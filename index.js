@@ -42,7 +42,7 @@ app.post("/echo", function(req, res) {
       for(var i = 0; i < arrayCarreras.length(); i++){
         carreras = carreras + "," + arrayCarreras[i];
       }
-      speech = arrayFrases[Math.floor(Math.random() * (arrayFrases.length() + 1))] + carreras;
+      speech = arrayFrases[1] + carreras;
     }
 
     if (req.body.queryResult.action == "costo") {
@@ -52,7 +52,7 @@ app.post("/echo", function(req, res) {
         "El precio actual de inscripción semestral es de $" + costo,
         "La inscripción tiene un costo de $" + costo + ", sin embargo, cada semestre se actualiza el precio.",
         "Actualmente, la inscripción tiene un costo de $" + costo];
-      speech = costoFrases[Math.floor(Math.random() * (costoFrases.length() + 1))];
+      speech = costoFrases[1];
     }
   var speechResponse = {
     google: {
