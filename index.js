@@ -50,6 +50,7 @@ app.post("/echo", function(req, res) {
       //var carreras = "";
       /*for(var i = 0; i < arrayCarreras.length(); i++){
         carreras = carreras + "," + arrayCarreras[i];
+        colours[Math.floor(Math.random() * colours.length)]
       }*/
       speech = arrayFrases[1];
     }
