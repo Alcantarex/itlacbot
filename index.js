@@ -62,10 +62,6 @@ app.get('/', (req, res) => {
 	res.status(200).send('Server is working.')
 });
 
-app.listen(port, () => {
-	console.log(`🌏 app is running at https://itlacbot2.herokuapp.com/:${port}`)
-});
-
 app.listen(process.env.PORT || 8000, function() {
-  console.log("app up and listening");
+  console.log("🌏 app is running up and listening");
 });
