@@ -47,12 +47,11 @@ app.post("/echo", function(req, res) {
         "Las carreras que hay en el ITLAC son\nIngeniería en Sistemas Computacionales\nIngeniería Química\nIngeniería Electrónica\nIngeniería Electromecánica\nIngeniería Industrial\nIngeniería en Gestión Empresarial\nContabilidad\nAdministración",
         "Mira, existen 6 Ingenierías y 2 Licenciaturas, y son "
       ];
-      //var carreras = "";
-      /*for(var i = 0; i < arrayCarreras.length(); i++){
-        carreras = carreras + "," + arrayCarreras[i];
-        colours[Math.floor(Math.random() * colours.length)]
-      }*/
-      speech = arrayFrases[1];
+      var carreras = "";
+      for(var i = 0; i < arrayCarreras.length(); i++){
+        carreras = carreras + "\n" + arrayCarreras[i];
+      }
+      speech = arrayFrases[Math.floor(Math.random() * arrayFrases.length)];
     }
 
     if (req.body.queryResult.action == "costo") {
