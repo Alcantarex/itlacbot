@@ -21,6 +21,15 @@ app.post("/echo", function(req, res) {
     req.body.queryResult.parameters.echoText
       ? req.body.queryResult.parameters.echoText
       : "Ocurrió un problema, vato. Habla de nuevo.";*/
+    
+    if (req.body.queryResult.action == "saludo") {
+      var saludoFrases = [
+        "¡Hola! ¿En qué te puedo ayudar?",
+        "¡Hey! ¿Qué tal? ¿En qué puedo ayudarte?",
+        "Hola, ¿En qué puedo ayudarte?",
+        "Buenas, ¿Para qué soy bueno?"];
+      speech = saludoFrases[1];
+    }
   
     if (req.body.queryResult.action == "carrera") {
       var arrayCarreras = [
@@ -38,10 +47,10 @@ app.post("/echo", function(req, res) {
         "Las carreras que hay en el ITLAC son ",
         "Mira, existen 6 Ingenierías y 2 Licenciaturas, y son "
       ];
-      var carreras = "";
-      for(var i = 0; i < arrayCarreras.length(); i++){
+      //var carreras = "";
+      /*for(var i = 0; i < arrayCarreras.length(); i++){
         carreras = carreras + "," + arrayCarreras[i];
-      }
+      }*/
       speech = arrayFrases[1];
     }
 
