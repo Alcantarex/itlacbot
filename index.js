@@ -14,19 +14,12 @@ app.use(
 app.use(bodyParser.json());
 
 app.post("/echo", function(req, res) {
-  /*var speech =
+  var speech =
     req.body.queryResult &&
     req.body.queryResult.parameters &&
     req.body.queryResult.parameters.echoText
-      ? req.body.queryResult.parameters.echoText
-      : "Ocurrió un problema, vato. Habla de nuevo.";*/
-    if (req.body.queryResult.action == "costo") {
-      let costo = parseFloat(req.body.queryResult.parameters.costo);
-      speech = "El costo es de " + costo;
-      res.json({
-          "fulfillmentText": speech
-      });
-    }
+      ? "Si llego vato"
+      : "Ocurrió un problema, vato. Habla de nuevo.";
   
   var speechResponse = {
     google: {
@@ -53,7 +46,7 @@ app.post("/echo", function(req, res) {
   });
 });
 
-app.post('/', function (req, res) {
+/*app.post('/', function (req, res) {
   if (req.body.queryResult.action == "suma") {
       let num1 = parseFloat(req.body.queryResult.parameters.num1);
       let num2 = parseFloat(req.body.queryResult.parameters.num2);
@@ -63,14 +56,14 @@ app.post('/', function (req, res) {
           "fulfillmentText": response
       });
   }
-});
+});*/
 
 app.get('/get', (req, res) => {
-	res.status(200).send('app is working.')
+	console.log('app is working.');
 })
 
 app.listen(port, () => {
-	console.log(`🌏 app is running at http://localhost:${port}`)
+	console.log(`🌏 app is running at https://itlacbot2.herokuapp.com/:${port}`)
 })
 
 app.listen(process.env.PORT || 8000, function() {
