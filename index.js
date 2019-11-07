@@ -28,6 +28,15 @@ app.post("/echo", function(req, res) {
     } else {
       speech = "No entró, vato";
     }*/
+
+    if (req.body.queryResult.action == "costo") {
+      var costo = 2900;
+      var costPhrases = [
+        "El semeste cuesta $" + costo,
+        "Ing. Química",
+        "Ing. Electrónica"];
+      speech = costPhrases[0];
+    }
   var speechResponse = {
     google: {
       expectUserResponse: true,
