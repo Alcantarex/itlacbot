@@ -14,12 +14,21 @@ app.use(
 app.use(bodyParser.json());
 
 app.post("/echo", function(req, res) {
-  var speech =
+  var speech = ""; 
+  speech =
     req.body.queryResult &&
     req.body.queryResult.parameters &&
     req.body.queryResult.parameters.echoText
       ? "Si llego vato"
       : "Ocurrió un problema, vato. Habla de nuevo.";
+
+  if (req.body.queryResult.action == "costo") {
+        let cost = parseFloat(req.body.queryResult.parameters.costo);
+        var speech = "El costazo es " + cost;
+        res.json({
+            "fulfillmentText": speech
+        });
+  }
   
   var speechResponse = {
     google: {
