@@ -22,9 +22,9 @@ app.post("/echo", function(req, res) {
       : "Ocurrió un problema, vato. Habla de nuevo.";*/
     if (req.body.queryResult.action == "costo") {
       let costo = parseFloat(req.body.queryResult.parameters.costo);
-      response = "El costo es de " + costo;
+      speech = "El costo es de " + costo;
       res.json({
-          "fulfillmentText": response
+          "fulfillmentText": speech
       });
     }
   
