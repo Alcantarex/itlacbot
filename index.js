@@ -44,7 +44,7 @@ app.post("/echo", function(req, res) {
       ];
       var arrayFrases = [
         "En el Instituto Tecnológico de Lázaro Cárdenas, hay 6 Ingenierías y 2 Licenciaturas, y son",
-        "Las carreras que hay en el ITLAC son ",
+        "Las carreras que hay en el ITLAC son\nIngeniería en Sistemas Computacionales\nIngeniería Química\nIngeniería Electrónica\nIngeniería Electromecánica\nIngeniería Industrial\nIngeniería en Gestión Empresarial\nContabilidad\nAdministración",
         "Mira, existen 6 Ingenierías y 2 Licenciaturas, y son "
       ];
       //var carreras = "";
