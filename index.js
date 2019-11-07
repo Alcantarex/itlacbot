@@ -42,7 +42,7 @@ app.post("/echo", function(req, res) {
       for(var i = 0; i < arrayCarreras.length(); i++){
         carreras = carreras + "," + arrayCarreras[i];
       }
-      speech = arrayFrases[1] + carreras;
+      speech = arrayFrases[1];
     }
 
     if (req.body.queryResult.action == "costo") {
