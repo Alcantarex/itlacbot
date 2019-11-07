@@ -23,16 +23,16 @@ app.post("/echo", function(req, res) {
       : "Ocurrió un problema, vato. Habla de nuevo.";*/
     
     if (req.body.queryResult.action == "saludo") {
-      var saludoFrases = [
+      var aSaludo = [
         "¡Hola! ¿En qué te puedo ayudar?",
         "¡Hey! ¿Qué tal? ¿En qué puedo ayudarte?",
         "Hola, ¿En qué puedo ayudarte?",
         "Buenas, ¿Para qué soy bueno?"];
-      speech = saludoFrases[1];
+      speech = aSaludo[1];
     }
   
     if (req.body.queryResult.action == "carrera") {
-      var arrayCarreras = [
+      var aCarreras = [
         "Ingeniería en Sistemas Computacionales",
         "Ingeniería Química",
         "Ingeniería Electrónica",
@@ -42,26 +42,26 @@ app.post("/echo", function(req, res) {
         "Contabilidad",
         "Administración"
       ];
-      var arrayFrases = [
+      var aFrases = [
         "En el Instituto Tecnológico de Lázaro Cárdenas, hay 6 Ingenierías y 2 Licenciaturas, y son",
         "Las carreras que hay en el ITLAC son\nIngeniería en Sistemas Computacionales\nIngeniería Química\nIngeniería Electrónica\nIngeniería Electromecánica\nIngeniería Industrial\nIngeniería en Gestión Empresarial\nContabilidad\nAdministración",
         "Mira, existen 6 Ingenierías y 2 Licenciaturas, y son "
       ];
-      var carreras = "";
-      for(var i = 0; i < arrayCarreras.length(); i++){
-        carreras = carreras + "\n" + arrayCarreras[i];
+      var sCarreras = "";
+      for(var i = 0; i < aCarreras.length(); i++){
+        sCarreras = sCarreras + "\n" + aCarreras[i];
       }
-      speech = arrayFrases[Math.floor(Math.random() * arrayFrases.length)];
+      speech = aFrases[Math.floor(Math.random() * aFrases.length)];
     }
 
     if (req.body.queryResult.action == "costo") {
-      var costo = 2900;
-      var costoFrases = [
-        "El semeste cuesta $" + costo,
-        "El precio actual de inscripción semestral es de $" + costo,
-        "La inscripción tiene un costo de $" + costo + ", sin embargo, cada semestre se actualiza el precio.",
-        "Actualmente, la inscripción tiene un costo de $" + costo];
-      speech = costoFrases[1];
+      var cCosto = 2900;
+      var aCosto = [
+        "El semeste cuesta $" + cCosto,
+        "El precio actual de inscripción semestral es de $" + cCosto,
+        "La inscripción tiene un costo de $" + cCosto + ", sin embargo, cada semestre se actualiza el precio.",
+        "Actualmente, la inscripción tiene un costo de $" + cCosto];
+      speech = aCosto[1];
     }
   var speechResponse = {
     google: {
