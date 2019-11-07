@@ -15,19 +15,19 @@ app.use(bodyParser.json());
 
 app.post("/echo", function(req, res) {
   var speech = ""; 
-  /*speech =
+  speech =
     req.body.queryResult &&
     req.body.queryResult.parameters &&
     req.body.queryResult.parameters.echoText
-      ? "Si llego vato"
-      : "Ocurrió un problema, vato. Habla de nuevo.";*/
+      ? req.body.queryResult.parameters.echoText
+      : "Ocurrió un problema, vato. Habla de nuevo.";
   
-    if (req.body.queryResult.action == "carrera") {
+    /*if (req.body.queryResult.action == "carrera") {
       var arrayCarreras = ["Ing. Sistemas","Ing. Química","Ing. Electrónica"];
       speech = "Está la mejor, " + arrayCarreras[0];
     } else {
       speech = "No entró, vato";
-    }
+    }*/
   var speechResponse = {
     google: {
       expectUserResponse: true,
@@ -66,7 +66,7 @@ app.post("/echo", function(req, res) {
 });*/
 
 app.get('/', (req, res) => {
-	res.status(200).send('Server is working.')
+	res.status(200).send('🌏 Server is working.')
 });
 
 app.listen(process.env.PORT || 8000, function() {
