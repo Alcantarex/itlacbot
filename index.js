@@ -15,12 +15,12 @@ app.use(bodyParser.json());
 
 app.post("/echo", function(req, res) {
   var speech = ""; 
-  speech =
+  /*speech =
     req.body.queryResult &&
     req.body.queryResult.parameters &&
     req.body.queryResult.parameters.echoText
       ? req.body.queryResult.parameters.echoText
-      : "Ocurrió un problema, vato. Habla de nuevo.";
+      : "Ocurrió un problema, vato. Habla de nuevo.";*/
   
     if (req.body.queryResult.action == "carrera") {
       var arrayCarreras = [
@@ -47,11 +47,12 @@ app.post("/echo", function(req, res) {
 
     if (req.body.queryResult.action == "costo") {
       var costo = 2900;
-      var costPhrases = [
+      var costoFrases = [
         "El semeste cuesta $" + costo,
-        "Ing. Química",
-        "Ing. Electrónica"];
-      speech = costPhrases[0];
+        "El precio actual de inscripción semestral es de $" + costo,
+        "La inscripción tiene un costo de $" + costo + ", sin embargo, cada semestre se actualiza el precio.",
+        "Actualmente, la inscripción tiene un costo de $" + costo];
+      speech = costoFrases[0];
     }
   var speechResponse = {
     google: {
