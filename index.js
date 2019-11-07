@@ -22,12 +22,28 @@ app.post("/echo", function(req, res) {
       ? req.body.queryResult.parameters.echoText
       : "Ocurrió un problema, vato. Habla de nuevo.";
   
-    /*if (req.body.queryResult.action == "carrera") {
-      var arrayCarreras = ["Ing. Sistemas","Ing. Química","Ing. Electrónica"];
-      speech = "Está la mejor, " + arrayCarreras[0];
-    } else {
-      speech = "No entró, vato";
-    }*/
+    if (req.body.queryResult.action == "carrera") {
+      var arrayCarreras = [
+        "Ingeniería en Sistemas Computacionales",
+        "Ingeniería Química",
+        "Ingeniería Electrónica",
+        "Ingeniería Electromecánica",
+        "Ingeniería Industrial",
+        "Ingeniería en Gestión Empresarial",
+        "Contabilidad",
+        "Administración"
+      ];
+      var arrayFrases = [
+        "En el Instituto Tecnológico de Lázaro Cárdenas, hay 6 Ingenierías y 2 Licenciaturas, y son",
+        "Las carreras que hay en el ITLAC son ",
+        "Mira, existen 6 Ingenierías y 2 Licenciaturas, y son "
+      ];
+      var carreras = "";
+      for(var i = 0; i < arrayCarreras.length(); i++){
+        carreras = carreras + "," + arrayCarreras[i];
+      }
+      speech = arrayFrases[Math.floor(Math.random() * (arrayFrases.length() + 1))] + carreras;
+    }
 
     if (req.body.queryResult.action == "costo") {
       var costo = 2900;
