@@ -52,7 +52,7 @@ app.post("/echo", function(req, res) {
         "El precio actual de inscripción semestral es de $" + costo,
         "La inscripción tiene un costo de $" + costo + ", sin embargo, cada semestre se actualiza el precio.",
         "Actualmente, la inscripción tiene un costo de $" + costo];
-      speech = costoFrases[0];
+      speech = costoFrases[Math.floor(Math.random() * (costoFrases.length() + 1))];
     }
   var speechResponse = {
     google: {
