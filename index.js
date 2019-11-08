@@ -118,7 +118,7 @@ app.get('/', (req, res) => {
     "Mira, existen 6 Ingenierías y 2 Licenciaturas, y son "
   ];
   var sCarreras = "";
-  for(var i = 0; i < aCarreras.length(); i++){
+  for(var i = 0; i < aCarreras.length; i++){
     sCarreras = sCarreras + "\n" + aCarreras[i];
   }
 	res.status(200).send('🌏 ITLACbots Server is working.\n' + sCarreras)
