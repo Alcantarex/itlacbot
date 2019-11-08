@@ -51,7 +51,7 @@ app.post("/echo", function(req, res) {
       for(var i = 0; i < aCarreras.length(); i++){
         sCarreras = sCarreras + "\n" + aCarreras[i];
       }
-      speech = aFrases[1];
+      speech = aFrases[2] + "\n" + sCarreras;
     }
 
     if (req.body.queryResult.action == "costo") {
