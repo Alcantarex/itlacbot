@@ -51,6 +51,7 @@ app.post("/echo", function(req, res) {
       for(var i = 0; i < aCarreras.length(); i++){
         sCarreras = sCarreras + "\n" + aCarreras[i];
       }
+      //Math.random() * (high - low) + low
       speech = aFrases[2] + "\n" + sCarreras;
     }
 
@@ -101,7 +102,26 @@ app.post("/echo", function(req, res) {
 });*/
 
 app.get('/', (req, res) => {
-	res.status(200).send('🌏 Server is working.')
+  var aCarreras = [
+    "Ingeniería en Sistemas Computacionales",
+    "Ingeniería Química",
+    "Ingeniería Electrónica",
+    "Ingeniería Electromecánica",
+    "Ingeniería Industrial",
+    "Ingeniería en Gestión Empresarial",
+    "Contabilidad",
+    "Administración"
+  ];
+  var aFrases = [
+    "En el Instituto Tecnológico de Lázaro Cárdenas, hay 6 Ingenierías y 2 Licenciaturas, y son",
+    "Las carreras que hay en el ITLAC son\nIngeniería en Sistemas Computacionales\nIngeniería Química\nIngeniería Electrónica\nIngeniería Electromecánica\nIngeniería Industrial\nIngeniería en Gestión Empresarial\nContabilidad\nAdministración",
+    "Mira, existen 6 Ingenierías y 2 Licenciaturas, y son "
+  ];
+  var sCarreras = "";
+  for(var i = 0; i < aCarreras.length(); i++){
+    sCarreras = sCarreras + "\n" + aCarreras[i];
+  }
+	res.status(200).send('🌏 ITLACbots Server is working.\n' + sCarreras)
 });
 
 app.listen(process.env.PORT || 8000, function() {
