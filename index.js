@@ -52,7 +52,7 @@ app.post("/echo", function(req, res) {
         sCarreras = sCarreras + "\n" + aCarreras[i];
       }
       //Math.random() * (high - low) + low
-      speech = aFrases[2] + "\n" + sCarreras;
+      speech = aFrases[1];
     }
 
     if (req.body.queryResult.action == "costo") {
