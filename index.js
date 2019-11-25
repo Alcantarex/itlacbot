@@ -145,17 +145,17 @@ app.post("/echo", function(req, res) {
     } else if (req.body.queryResult.parameters.vision) {
       speech = "La vision del itlac es ser una institución pública de educación superior y de postgrado con carácter nacionalista, con respecto a nuestros principios y valores. Con un modelo educativo, centrado en el aprendizaje, congruente y dinámico de acuerdo a las necesidades del entorno, que impulse el desarrollo económico, tecnológico y la investigación científica.";        
     } else if (req.body.queryResult.parameters.liberacion) {
-      speech = "Profe Tello, ya libérelos. Ya estoy hablando y bien, así la neta yo creo que ya pasaron, me programaron chido. Ándele, y nos vamos temprano.";        
+      speech = "Profe Tello, ya libérelos, ándele. Ya estoy hablando y bien, así la neta yo creo que ya pasaron, me programaron chido. Ándele, y sirve que nos vamos temprano hoy.";        
     }
     speech += "\n" + aPreguntas[ Math.round(Math.random()*(aPreguntas.length-1)) ];
   } else if (req.body.queryResult.action == "agradecimiento") {            //AGRADECIMIENTO ------ FUNCIONAL 100%
     var aAgradecimiento = [
-      "De nada, es un gusto poder ayudar.😉",
-      "No es nada, amo ayudar a las personas.😊",
-      "¡No te preocupes! al hablar conmigo, tu me ayudas a aprender.🤭",
-      "De nada, espero que te haya servido de algo.😊",
-      "No es nada, al contrario, gracias a tí.😄",
-      "De nada, espero que la información haya sido útil.😁",
+      "De nada, es un gusto poder ayudar.",
+      "No es nada, amo ayudar a las personas.",
+      "¡No te preocupes! al hablar conmigo, tu me ayudas a aprender.",
+      "De nada, espero que te haya servido de algo.",
+      "No es nada, al contrario, gracias a tí.",
+      "De nada, espero que la información haya sido útil.",
     ];
     speech = aAgradecimiento[ Math.round(Math.random()*(aAgradecimiento.length-1)) ];
     speech += "\n" + aPreguntas[ Math.round(Math.random()*(aPreguntas.length-1)) ];
@@ -164,10 +164,10 @@ app.post("/echo", function(req, res) {
       "Adiós", "¡Nos vemos!", "Hasta pronto", "Nos vemos luego", "¡Hasta luego!"
     ];
     var aDespedida2 = [
-      "espero haber sido de ayuda. ¡Que tengas un lindo día!.😉",
-      "espero que te haya servido de algo.😊",
-      "cuando lo necesites, aquí estaré. ¡Que te diviertas!😊",
-      "espero que la información haya sido útil.😁",
+      "espero haber sido de ayuda. ¡Que tengas un lindo día!.",
+      "espero que te haya servido de algo.",
+      "cuando lo necesites, aquí estaré. ¡Que te diviertas!",
+      "espero que la información haya sido útil.",
     ];
     speech = aDespedida1[ Math.round(Math.random()*(aDespedida1.length-1)) ];
     speech += ", " + aDespedida2[ Math.round(Math.random()*(aDespedida2.length-1)) ];
