@@ -39,7 +39,7 @@ app.post("/echo", function(req, res) {
       var aSaludoTres = [
         "¿En qué te puedo ayudar?", "¿Qué tal? ¿En qué puedo ayudarte?", "¿En qué puedo ayudarte?",
         "¿En qué puedo ayudarte?", "¿Para qué soy bueno?", "¿Qué se le ofrece?"];      
-      speech = sSaludo + ", " + aSaludoTres[ Math.round(Math.random()*(aSaludoTres.length-1))];
+      speech = sSaludo + ", " + aSaludoTres[ Math.round(Math.random()*(aSaludoTres.length-1))] + "\n\n" + dFecha.getDate();
     //CARRERA -------------------------------------------------- 
     } else if (req.body.queryResult.action == "carrera") {
       var aCarreras = [
@@ -103,7 +103,7 @@ app.post("/echo", function(req, res) {
         "Gestionar aspectos académicos de los estudiantes tales como las altas, bajas, exámenes especiales, plan de estudios, etcétera.",
         "Propiciar que las tecnologías lleguen a todos los usuarios, siendo instrumento para sus investigaciones, ejercicio docente o en su defecto herramientas fundamentales para el desarrollo educativo."
       ];
-      if (req.body.queryResult.parameters.parameters.cuales) {
+      if (req.body.queryResult.parameters.cuales) {
         
         speech = "Los departamentos del itlac son ";
         for(var i = 0; i < aDeptos.length; i++){
