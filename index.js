@@ -39,7 +39,7 @@ app.post("/echo", function(req, res) {
       var aSaludoTres = [
         "¿En qué te puedo ayudar?", "¿Qué tal? ¿En qué puedo ayudarte?", "¿En qué puedo ayudarte?",
         "¿En qué puedo ayudarte?", "¿Para qué soy bueno?", "¿Qué se le ofrece?"];      
-      speech = sSaludo + ", " + aSaludoTres[ Math.round(Math.random()*(aSaludoTres.length-1))] + "\n\n" + dFecha.getDate();
+      speech = sSaludo + ", " + aSaludoTres[ Math.round(Math.random()*(aSaludoTres.length-1))] + "\n\n" + dFecha.getHours() + "\n\n" + dFecha.getUTCHours();
     //CARRERA -------------------------------------------------- 
     } else if (req.body.queryResult.action == "carrera") {
       var aCarreras = [
