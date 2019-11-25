@@ -59,17 +59,17 @@ app.post("/echo", function(req, res) {
       ];
       var sCarreras = "";
       var iTotalCarreras = aCarreras.length;
-      for(var i = 0; i < iTotalCarreras; i++){
+      /*for(var i = 0; i < iTotalCarreras; i++){
         if(i = iTotalCarreras - 1)
           sCarreras = sCarreras + "y \n" + aCarreras[i];
         else 
           sCarreras = sCarreras + ", \n" + aCarreras[i];
-      }
-      /*
+      }*/
+      
       for(var i = 0; i < iTotalCarreras; i++){
         sCarreras = sCarreras + "\n" + aCarreras[i];
       }
-      */
+      
       speech = aFrases[ Math.round(Math.random()*aFrases.length) ] + "\n" + sCarreras;
     //COSTO --------------------------------------------------
     } else if (req.body.queryResult.action == "costo") {
