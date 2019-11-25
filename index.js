@@ -30,16 +30,16 @@ app.post("/echo", function(req, res) {
       var aSaludoUno = ["Buenos días", "Buenas tardes", "Buenas noches"];
       var aSaludoDos = ["¡Hola!", "¡Hey!", "¡Buenas!"];
       if(iValue == 1){
-        if(dFecha.getHours() >= 0 && dFecha.getHours() < 12) sSaludo = aSaludoUno[0];
-        else if(dFecha.getHours() >= 12 && dFecha.getHours() < 20) sSaludo = aSaludoUno[1];
-        else if(dFecha.getHours() >= 20 && dFecha.getHours() <= 24) sSaludo = aSaludoUno[2];        
+        if(dFecha.getHours() >= 0 && dFecha.getHours() < 12) sSaludo = aSaludoUno[2];
+        else if(dFecha.getHours() >= 12 && dFecha.getHours() < 20) sSaludo = aSaludoUno[0];
+        else if(dFecha.getHours() >= 20 && dFecha.getHours() <= 24) sSaludo = aSaludoUno[1];        
       } else {
         sSaludo = aSaludoDos[ Math.round(Math.random()*(aSaludoDos.length-1)) ];
       }
       var aSaludoTres = [
         "¿En qué te puedo ayudar?", "¿Qué tal? ¿En qué puedo ayudarte?", "¿En qué puedo ayudarte?",
         "¿En qué puedo ayudarte?", "¿Para qué soy bueno?", "¿Qué se le ofrece?"];      
-      speech = sSaludo + ", " + aSaludoTres[ Math.round(Math.random()*(aSaludoTres.length-1))] + "\n\n" + dFecha.getHours() + "\n\n" + dFecha.getUTCHours();
+      speech = sSaludo + ", " + aSaludoTres[ Math.round(Math.random()*(aSaludoTres.length-1))];
     //CARRERA -------------------------------------------------- 
     } else if (req.body.queryResult.action == "carrera") {
       var aCarreras = [
