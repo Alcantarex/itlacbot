@@ -29,9 +29,7 @@ app.post("/echo", function(req, res) {
         "Hola, ¿En qué puedo ayudarte?",
         "Buenas, ¿Para qué soy bueno?"];
       speech = aSaludo[1];
-    }
-  
-    if (req.body.queryResult.action == "carrera") {
+    } else if (req.body.queryResult.action == "carrera") {
       var aCarreras = [
         "Ingeniería en Sistemas Computacionales",
         "Ingeniería Química",
@@ -40,7 +38,7 @@ app.post("/echo", function(req, res) {
         "Ingeniería Industrial",
         "Ingeniería en Gestión Empresarial",
         "Contabilidad",
-        "Administración"
+        "y Administración"
       ];
       var aFrases = [
         "En el Instituto Tecnológico de Lázaro Cárdenas, hay 6 Ingenierías y 2 Licenciaturas, y son",
@@ -51,11 +49,8 @@ app.post("/echo", function(req, res) {
       for(var i = 0; i < aCarreras.length; i++){
         sCarreras = sCarreras + "\n" + aCarreras[i];
       }
-      //Math.random() * (high - low) + low
-      speech = aFrases[2] + "\n" + sCarreras;
-    }
-
-    if (req.body.queryResult.action == "costo") {
+      speech = aFrases[2] + "\n" + sCarreras + "\nAleatorio: " + Math.round(Math.random()*aFrases.length);
+    } else if (req.body.queryResult.action == "costo") {
       var cCosto = 2900;
       var aCosto = [
         "El semeste cuesta $" + cCosto,
@@ -63,7 +58,10 @@ app.post("/echo", function(req, res) {
         "La inscripción tiene un costo de $" + cCosto + ", sin embargo, cada semestre se actualiza el precio.",
         "Actualmente, la inscripción tiene un costo de $" + cCosto];
       speech = aCosto[2];
+    } else {
+      speech = "Ocurrió un problema. Hable de nuevo, por favor.";
     }
+
   var speechResponse = {
     google: {
       expectUserResponse: true,
