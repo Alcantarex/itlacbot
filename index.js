@@ -23,7 +23,7 @@ app.post("/echo", function(req, res) {
       ? req.body.queryResult.parameters.echoText
       : "Ocurrió un problema, vato. Habla de nuevo.";*/
     //*******************************************************************************************************/
-    //SALUDO --------------------------------------------------
+    //SALUDO -------------------------------------------------- FUNCIONAL 100%
     if (req.body.queryResult.action == "saludo") {
       var sSaludo = "";
       var iValue = Math.round(Math.random()*2);
@@ -40,7 +40,7 @@ app.post("/echo", function(req, res) {
         "¿En qué te puedo ayudar?", "¿Qué tal? ¿En qué puedo ayudarte?", "¿En qué puedo ayudarte?",
         "¿En qué puedo ayudarte?", "¿Para qué soy bueno?", "¿Qué se le ofrece?"];      
       speech = sSaludo + ", " + aSaludoTres[ Math.round(Math.random()*aSaludoTres.length) ];
-    //CARRERA --------------------------------------------------
+    //CARRERA -------------------------------------------------- 
     } else if (req.body.queryResult.action == "carrera") {
       var aCarreras = [
         "Ingeniería en Sistemas Computacionales",
@@ -59,12 +59,6 @@ app.post("/echo", function(req, res) {
       ];
       var sCarreras = "";
       var iTotalCarreras = aCarreras.length;
-      /*for(var i = 0; i < iTotalCarreras; i++){
-        if(i = iTotalCarreras - 1)
-          sCarreras = sCarreras + "y \n" + aCarreras[i];
-        else 
-          sCarreras = sCarreras + ", \n" + aCarreras[i];
-      }*/
       
       for(var i = 0; i < iTotalCarreras; i++){
         sCarreras = sCarreras + "\n" + aCarreras[i];
@@ -109,17 +103,17 @@ app.post("/echo", function(req, res) {
         "Gestionar aspectos académicos de los estudiantes tales como las altas, bajas, exámenes especiales, plan de estudios, etcétera.",
         "Propiciar que las tecnologías lleguen a todos los usuarios, siendo instrumento para sus investigaciones, ejercicio docente o en su defecto herramientas fundamentales para el desarrollo educativo."
       ];
-      if (req.body.queryResult.parameters.parameters == "cuales") {
+      if (req.body.queryResult.parameters.parameters.cuales) {
         
         speech = "Los departamentos del itlac son ";
         for(var i = 0; i < aDeptos.length; i++){
           speech = speech + "\n" + aDeptos[i];
         }
 
-      } else if (req.body.queryResult.parameters == "funcion") {
+      } else if (req.body.queryResult.parameters.funcion) {
         var sDepto = req.body.queryResult.parameters.depto;
         aDeptos.indexOf(sDepto); 
-        speech = "";
+        speech = "Index: " + aDeptos.indexOf(sDepto);
       }
       
       
