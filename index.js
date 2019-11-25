@@ -14,21 +14,33 @@ app.use(
 app.use(bodyParser.json());
 
 app.post("/echo", function(req, res) {
-  var speech = ""; 
+  var speech = "";
+  var dFecha = new Date();
   /*speech =
     req.body.queryResult &&
     req.body.queryResult.parameters &&
     req.body.queryResult.parameters.echoText
       ? req.body.queryResult.parameters.echoText
       : "Ocurrió un problema, vato. Habla de nuevo.";*/
-    
+    //*******************************************************************************************************/
+    //SALUDO --------------------------------------------------
     if (req.body.queryResult.action == "saludo") {
-      var aSaludo = [
-        "¡Hola! ¿En qué te puedo ayudar?",
-        "¡Hey! ¿Qué tal? ¿En qué puedo ayudarte?",
-        "Hola, ¿En qué puedo ayudarte?",
-        "Buenas, ¿Para qué soy bueno?"];
-      speech = aSaludo[1];
+      var sSaludo = "";
+      var iValue = Math.round(Math.random()*2);
+      var aSaludoUno = ["Buenos días", "Buenas tardes", "Buenas noches"];
+      var aSaludoDos = ["¡Hola!", "¡Hey!", "¡Buenas!"];
+      if(iValue == 1){
+        if(dFecha.getHours() >= 0 && dFecha.getHours() < 12) sSaludo = aSaludoUno[0];
+        else if(dFecha.getHours() >= 12 && dFecha.getHours() < 20) sSaludo = aSaludoUno[1];
+        else if(dFecha.getHours() >= 20 && dFecha.getHours() <= 24) sSaludo = aSaludoUno[2];        
+      } else {
+        sSaludo = aSaludoDos[ Math.round(Math.random()*aSaludoDos.length) ];
+      }
+      var aSaludoTres = [
+        "¿En qué te puedo ayudar?", "¿Qué tal? ¿En qué puedo ayudarte?", "¿En qué puedo ayudarte?",
+        "¿En qué puedo ayudarte?", "¿Para qué soy bueno?", "¿Qué se le ofrece?"];      
+      speech = sSaludo + ", " + aSaludoTres[ Math.round(Math.random()*aSaludoTres.length) ];
+    //CARRERA --------------------------------------------------
     } else if (req.body.queryResult.action == "carrera") {
       var aCarreras = [
         "Ingeniería en Sistemas Computacionales",
@@ -42,26 +54,30 @@ app.post("/echo", function(req, res) {
       ];
       var aFrases = [
         "En el Instituto Tecnológico de Lázaro Cárdenas, hay 6 Ingenierías y 2 Licenciaturas, y son",
-        "Las carreras que hay en el ITLAC son\nIngeniería en Sistemas Computacionales\nIngeniería Química\nIngeniería Electrónica\nIngeniería Electromecánica\nIngeniería Industrial\nIngeniería en Gestión Empresarial\nContabilidad\nAdministración",
+        "Las carreras que hay en el ITLAC son ",
         "Mira, existen 6 Ingenierías y 2 Licenciaturas, y son "
       ];
       var sCarreras = "";
-      for(var i = 0; i < aCarreras.length; i++){
+      var iTotalCarreras = aCarreras.length;
+      for(var i = 0; i < iTotalCarreras; i++){
         sCarreras = sCarreras + "\n" + aCarreras[i];
       }
-      speech = aFrases[2] + "\n" + sCarreras + "\nAleatorio: " + Math.round(Math.random()*aFrases.length);
+      speech = aFrases[ Math.round(Math.random()*aFrases.length) ] + "\n" + sCarreras;
+    //COSTO --------------------------------------------------
     } else if (req.body.queryResult.action == "costo") {
       var cCosto = 2900;
       var aCosto = [
-        "El semeste cuesta $" + cCosto,
+        "El semeste de inscripción cuesta $" + cCosto,
         "El precio actual de inscripción semestral es de $" + cCosto,
         "La inscripción tiene un costo de $" + cCosto + ", sin embargo, cada semestre se actualiza el precio.",
-        "Actualmente, la inscripción tiene un costo de $" + cCosto];
-      speech = aCosto[2];
+        "Actualmente, en el " + dFecha.getFullYear() + " la inscripción tiene un costo de $" + cCosto,
+        "Mira, el semeste de inscripción tiene un costo de $" + cCosto + ", a partir de ahí, cada semestre siguiente se va reduciendo cada $100"];
+      speech = aCosto[ Math.round(Math.random()*aCosto.length) ];
+    //ERROR --------------------------------------------------
     } else {
       speech = "Ocurrió un problema. Hable de nuevo, por favor.";
     }
-
+    //*******************************************************************************************************/
   var speechResponse = {
     google: {
       expectUserResponse: true,
@@ -87,20 +103,14 @@ app.post("/echo", function(req, res) {
   });
 });
 
-/*app.post('/', function (req, res) {
-  if (req.body.queryResult.action == "suma") {
-      let num1 = parseFloat(req.body.queryResult.parameters.num1);
-      let num2 = parseFloat(req.body.queryResult.parameters.num2);
-      let sum = num1 + num2;
-      response = num1 + " + " + num2 + " es " + sum;
-      res.json({
-          "fulfillmentText": response
-      });
-  }
-});*/
-
 app.get('/', (req, res) => {
-	res.status(200).send('🌏 ITLACbots Server is working.')
+  var html = 
+  "<html>"+
+    "<h1>🌏 ITLACbot's Server is working</h1>"+
+    "<h3>ITLACbot by Alcantara & Cuevas. Copyright © 2019, ITLACbot. Todos los derechos reservados.</h3>"+
+  "</html>";
+  
+	res.status(200).send(html);
 });
 
 app.listen(process.env.PORT || 8000, function() {
