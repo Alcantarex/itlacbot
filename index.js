@@ -37,14 +37,14 @@ app.post("/echo", function(req, res) {
   
   } else if (req.body.queryResult.action == "carrera") {            //CARRERA ------------ FUNCIONAL 100%
     var aCarreras = [
-      "Ingeniería en Sistemas Computacionales",
-      "Ingeniería Química",
-      "Ingeniería Electrónica",
-      "Ingeniería Electromecánica",
-      "Ingeniería Industrial",
-      "Ingeniería en Gestión Empresarial",
-      "Contabilidad",
-      "Administración"
+      "ingeniería en sistemas computacionales",
+      "ingeniería química",
+      "ingeniería electrónica",
+      "ingeniería electromecánica",
+      "ingeniería industrial",
+      "ingeniería en gestión empresarial",
+      "contabilidad",
+      "administración."
     ];
     var aBachilleratos = [
       "Físico-Matemático",
@@ -77,7 +77,7 @@ app.post("/echo", function(req, res) {
       speech = "El bachillerato de " + sCarrera + " es " +  aBachilleratos[aCarreras.indexOf(sCarrera)];
     } else if(req.body.queryResult.parameters.carreer){
       for(var i = 0; i < iTotalCarreras; i++)
-        sCarreras = (i == 0) ? "\n" + aCarreras[i] : sCarreras + ".\n" + aCarreras[i];      
+        sCarreras = (i == 0) ? "\n" + aCarreras[i].charAt(0).toUpperCase() + aCarreras[i].slice(1) : sCarreras + ".\n" + aCarreras[i].charAt(0).toUpperCase() + aCarreras[i].slice(1);      
       speech = aFrases[ Math.round(Math.random()*(aFrases.length-1)) ] + "\n" + sCarreras;
     }     
   } else if (req.body.queryResult.action == "costo") {              //COSTO -------------- FUNCIONAL 100%
@@ -91,17 +91,17 @@ app.post("/echo", function(req, res) {
     speech = aCosto[ Math.round(Math.random()*(aCosto.length-1)) ];    
   } else if (req.body.queryResult.action == "departamento") {       //DEPARTAMENTO ------- FUNCIONAL 100%
     var aDeptos = [
-      "Dirección",
-      "Servicios Escolares",
-      "Recursos Financieros",
-      "Extraescolares",
-      "Comunicación y difusión",
-      "Gestión Tecnológica y Vinculación",
-      "Titulación",
-      "Ciencias Básicas",
-      "Recursos Materiales",
-      "División de Estudios",
-      "Centro de cómputo"
+      "dirección",
+      "servicios escolares",
+      "recursos financieros",
+      "extraescolares",
+      "comunicación y difusión",
+      "gestión tecnológica y vinculación",
+      "titulación",
+      "ciencias básicas",
+      "recursos materiales",
+      "división de estudios",
+      "centro de cómputo"
     ];
     var aFuncion = [
       "dirigir y gestionar de manera general el plantel.",
@@ -121,7 +121,7 @@ app.post("/echo", function(req, res) {
     } else if (req.body.queryResult.parameters.cuales) {        
       speech = "Los departamentos del itlac son ";
       for(var i = 0; i < aDeptos.length; i++){
-        speech = speech + ".\n" + aDeptos[i];
+        speech = speech + ".\n" + aDeptos[i].charAt(0).toUpperCase() + aDeptos[i].slice(1);
       }
     } else if (req.body.queryResult.parameters.funcion) {
       var sDepto = req.body.queryResult.parameters.depto;
