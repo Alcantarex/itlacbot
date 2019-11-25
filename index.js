@@ -34,7 +34,7 @@ app.post("/echo", function(req, res) {
         else if(dFecha.getHours() >= 12 && dFecha.getHours() < 20) sSaludo = aSaludoUno[1];
         else if(dFecha.getHours() >= 20 && dFecha.getHours() <= 24) sSaludo = aSaludoUno[2];        
       } else {
-        sSaludo = aSaludoDos[ Math.round(Math.random()*aSaludoDos.length) ];
+        sSaludo = aSaludoDos[ Math.round(Math.random()*(aSaludoDos.length-1)) ];
       }
       var aSaludoTres = [
         "¿En qué te puedo ayudar?", "¿Qué tal? ¿En qué puedo ayudarte?", "¿En qué puedo ayudarte?",
