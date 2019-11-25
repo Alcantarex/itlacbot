@@ -16,7 +16,13 @@ app.use(bodyParser.json());
 app.post("/echo", function(req, res) {
   var speech = "";
   var dFecha = new Date();
-
+  var aPreguntas = [
+    "Ahm... ¿Necesitas algo más?",
+    "¿En qué más puedo ayudarte?",
+    "¿Necesitas ayuda con otra cosa?",
+    "¿Algo más, humano?",
+    "¿Otra cosita? Dime con confianza.",
+  ];
   //*******************************************************************************************************/    
   if (req.body.queryResult.action == "saludo") {                    //SALUDO ------------- FUNCIONAL 100%
     var sSaludo = "";
@@ -79,7 +85,8 @@ app.post("/echo", function(req, res) {
       for(var i = 0; i < iTotalCarreras; i++)
         sCarreras = (i == 0) ? "\n" + aCarreras[i].charAt(0).toUpperCase() + aCarreras[i].slice(1) : sCarreras + ".\n" + aCarreras[i].charAt(0).toUpperCase() + aCarreras[i].slice(1);      
       speech = aFrases[ Math.round(Math.random()*(aFrases.length-1)) ] + "\n" + sCarreras;
-    }     
+    }
+    speech += "\n" + aPreguntas[ Math.round(Math.random()*(aPreguntas.length-1)) ];
   } else if (req.body.queryResult.action == "costo") {              //COSTO -------------- FUNCIONAL 100%
     var cCosto = 2900;
     var aCosto = [
@@ -88,7 +95,8 @@ app.post("/echo", function(req, res) {
       "La inscripción tiene un costo de $" + cCosto + ", sin embargo, cada semestre se actualiza el precio.",
       "Actualmente, en el " + dFecha.getFullYear() + " la inscripción tiene un costo de $" + cCosto,
       "Mira, el semeste de inscripción tiene un costo de $" + cCosto + ", a partir de ahí, cada semestre siguiente se va reduciendo cada $100"];
-    speech = aCosto[ Math.round(Math.random()*(aCosto.length-1)) ];    
+    speech = aCosto[ Math.round(Math.random()*(aCosto.length-1)) ]; 
+    speech += "\n" + aPreguntas[ Math.round(Math.random()*(aPreguntas.length-1)) ];   
   } else if (req.body.queryResult.action == "departamento") {       //DEPARTAMENTO ------- FUNCIONAL 100%
     var aDeptos = [
       "dirección",
@@ -127,7 +135,8 @@ app.post("/echo", function(req, res) {
       var sDepto = req.body.queryResult.parameters.depto;
       aDeptos.indexOf(sDepto); 
       speech = "La función del departamento de " + sDepto + " es " +  aFuncion[aDeptos.indexOf(sDepto)];
-    }      
+    }
+    speech += "\n" + aPreguntas[ Math.round(Math.random()*(aPreguntas.length-1)) ];
   } else if (req.body.queryResult.action == "general") {            //GENERALIDADES ------ FUNCIONAL 100%
     if(req.body.queryResult.parameters.concepto){
       speech = "El Instituto Tecnológico de Lázaro Cárdenas es la máxima casa de estudios de la ciudad. Contamos con 6 ingenierías y 2 licenciaturas. Para más informes puedes llamar al 753 537 1977 o puedes seguir hablando conmigo.";
@@ -135,8 +144,33 @@ app.post("/echo", function(req, res) {
       speech = "La misión del itlac es formar profesionales con un alto sentido nacionalista de compromiso social, de servicio a su comunidad, identificados con el desarrollo de su región y del país, a través de una educación pública de calidad, pertinente que les proporcione los conocimientos, actitudes, habilidades y destrezas que cubran los parámetros de competencia internacional, a fin de satisfacer la demanda que el desarrollo de la región y del país requieren.";        
     } else if (req.body.queryResult.parameters.vision) {
       speech = "La vision del itlac es ser una institución pública de educación superior y de postgrado con carácter nacionalista, con respecto a nuestros principios y valores. Con un modelo educativo, centrado en el aprendizaje, congruente y dinámico de acuerdo a las necesidades del entorno, que impulse el desarrollo económico, tecnológico y la investigación científica.";        
+    } else if (req.body.queryResult.parameters.liberacion) {
+      speech = "Profe Tello, ya libérelos. Ya estoy hablando y bien, así la neta yo creo que ya pasaron, me programaron chido. Ándele, y nos vamos temprano.";        
     }
-  //ERROR --------------------------------------------------
+    speech += "\n" + aPreguntas[ Math.round(Math.random()*(aPreguntas.length-1)) ];
+  } else if (req.body.queryResult.action == "agradecimiento") {            //AGRADECIMIENTO ------ FUNCIONAL 100%
+    var aAgradecimiento = [
+      "De nada, es un gusto poder ayudar.😉",
+      "No es nada, amo ayudar a las personas.😊",
+      "¡No te preocupes! al hablar conmigo, tu me ayudas a aprender.🤭",
+      "De nada, espero que te haya servido de algo.😊",
+      "No es nada, al contrario, gracias a tí.😄",
+      "De nada, espero que la información haya sido útil.😁",
+    ];
+    speech = aAgradecimiento[ Math.round(Math.random()*(aAgradecimiento.length-1)) ];
+    speech += "\n" + aPreguntas[ Math.round(Math.random()*(aPreguntas.length-1)) ];
+  } else if (req.body.queryResult.action == "despedida") {            //DESPEDIDA ------ FUNCIONAL 100%
+    var aDespedida1 = [
+      "Adiós", "¡Nos vemos!", "Hasta pronto", "Nos vemos luego", "¡Hasta luego!"
+    ];
+    var aDespedida2 = [
+      "espero haber sido de ayuda. ¡Que tengas un lindo día!.😉",
+      "espero que te haya servido de algo.😊",
+      "cuando lo necesites, aquí estaré. ¡Que te diviertas!😊",
+      "espero que la información haya sido útil.😁",
+    ];
+    speech = aDespedida1[ Math.round(Math.random()*(aDespedida1.length-1)) ];
+    speech += ", " + aDespedida2[ Math.round(Math.random()*(aDespedida2.length-1)) ];
   } else {                                                          //ERROR -------------- FUNCIONAL 100%
     speech = "Ocurrió un problema. Hable de nuevo, por favor.";
   }
@@ -179,3 +213,10 @@ app.get('/', (req, res) => {
 app.listen(process.env.PORT || 8000, function() {
   console.log("🌏 app is running up and listening");
 });
+/* 
+Cuando un intent con una entrega habilitada tiene una coincidencia, Dialogflow realizará una solicitud POST HTTP a tu webhook con un objeto JSON que contiene información sobre el intent coincidente.
+
+Después de recibir una solicitud, el webhook puede realizar cualquier tarea necesaria. Por ejemplo, el webhook puede usar la información de la solicitud para buscar un producto en una base de datos o realizar un pedido.
+
+Finalmente, tu webhook debería responder con instrucciones sobre lo que debería hacer Dialogflow a continuación.
+*/
