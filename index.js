@@ -70,7 +70,7 @@ app.post("/echo", function(req, res) {
       var sCarreras = "";
       var iTotalCarreras = aCarreras.length;
       
-      if(req.body.queryResult.parameters.ingenieria){
+      if(req.body.queryResult.parameters.inge){
         for(var i = 0; i < 6; i++){
           sCarreras = sCarreras + ".\n" + aCarreras[i];
         }
