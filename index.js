@@ -175,6 +175,8 @@ app.post("/echo", function(req, res) {
     speech = "Ocurrió un problema. Hable de nuevo, por favor.";
   }
   //*******************************************************************************************************/
+
+  //Variable que almacena el texto a reproducir en sonido (obviamente es el mismo que el escrito)
   var speechResponse = {
     google: {
       expectUserResponse: true,
@@ -189,7 +191,7 @@ app.post("/echo", function(req, res) {
       }
     }
   };
-  
+  //Retorno de parámetros, texto escrito y texto para reproducción.
   return res.json({
     payload: speechResponse,
     //data: speechResponse,
@@ -200,6 +202,7 @@ app.post("/echo", function(req, res) {
   });
 });
 
+//Funcion GET en Raiz para mostrar la página principal del servidor.
 app.get('/', (req, res) => {
   var html = 
   "<html>"+
@@ -210,13 +213,7 @@ app.get('/', (req, res) => {
 	res.status(200).send(html);
 });
 
+//Oyente en el puesto 8000 del servidor para peticiones POST del Webhook
 app.listen(process.env.PORT || 8000, function() {
   console.log("🌏 app is running up and listening");
 });
-/* 
-Cuando un intent con una entrega habilitada tiene una coincidencia, Dialogflow realizará una solicitud POST HTTP a tu webhook con un objeto JSON que contiene información sobre el intent coincidente.
-
-Después de recibir una solicitud, el webhook puede realizar cualquier tarea necesaria. Por ejemplo, el webhook puede usar la información de la solicitud para buscar un producto en una base de datos o realizar un pedido.
-
-Finalmente, tu webhook debería responder con instrucciones sobre lo que debería hacer Dialogflow a continuación.
-*/
