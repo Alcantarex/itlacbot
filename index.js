@@ -40,7 +40,7 @@ app.post("/echo", function(req, res) {
         "¿En qué te puedo ayudar?", "¿Qué tal? ¿En qué puedo ayudarte?", "¿En qué puedo ayudarte?",
         "¿En qué puedo ayudarte?", "¿Para qué soy bueno?", "¿Qué se le ofrece?"];      
       speech = sSaludo + ", " + aSaludoTres[ Math.round(Math.random()*(aSaludoTres.length-1))];
-    //CARRERA -------------------------------------------------- 
+    //CARRERA -------------------------------------------------- FUNCIONAL 100%
     } else if (req.body.queryResult.action == "carrera") {
       var aCarreras = [
         "Ingeniería en Sistemas Computacionales",
@@ -60,12 +60,21 @@ app.post("/echo", function(req, res) {
       var sCarreras = "";
       var iTotalCarreras = aCarreras.length;
       
-      for(var i = 0; i < iTotalCarreras; i++){
-        sCarreras = sCarreras + "\n" + aCarreras[i];
+      if(req.body.queryResult.parameters.ingenieria){
+        for(var i = 0; i < 6; i++){
+          sCarreras = sCarreras + ".\n" + aCarreras[i];
+        }
+        speech = "Hay 6 ingenierías, y son \n" + sCarreras;
+      } else if(req.body.queryResult.parameters.licenciatura){
+        speech = "Hay 2 licenciaturas, y son \nContabilidad y Administración";
+      } else if(req.body.queryResult.parameters.carreer){
+        for(var i = 0; i < iTotalCarreras; i++){
+          sCarreras = sCarreras + ".\n" + aCarreras[i];
+        }
+        speech = aFrases[ Math.round(Math.random()*(aFrases.length-1)) ] + "\n" + sCarreras;
       }
       
-      speech = aFrases[ Math.round(Math.random()*(aFrases.length-1)) ] + "\n" + sCarreras;
-    //COSTO --------------------------------------------------
+    //COSTO -------------------------------------------------- FUNCIONAL 100%
     } else if (req.body.queryResult.action == "costo") {
       var cCosto = 2900;
       var aCosto = [
@@ -103,22 +112,29 @@ app.post("/echo", function(req, res) {
         "Gestionar aspectos académicos de los estudiantes tales como las altas, bajas, exámenes especiales, plan de estudios, etcétera.",
         "Propiciar que las tecnologías lleguen a todos los usuarios, siendo instrumento para sus investigaciones, ejercicio docente o en su defecto herramientas fundamentales para el desarrollo educativo."
       ];
-      if (req.body.queryResult.parameters.cuales) {
-        
+      if(req.body.queryResult.parameters.definicion){
+        speech = "Un departamento generalmente se entiende como una parte singular de la institución; es como un segmento del plantel.";
+      } else if (req.body.queryResult.parameters.cuales) {        
         speech = "Los departamentos del itlac son ";
         for(var i = 0; i < aDeptos.length; i++){
-          speech = speech + "\n" + aDeptos[i];
+          speech = speech + ".\n" + aDeptos[i];
         }
-
       } else if (req.body.queryResult.parameters.funcion) {
         var sDepto = req.body.queryResult.parameters.depto;
         aDeptos.indexOf(sDepto); 
-        speech = "Index: " + aDeptos.indexOf(sDepto);
+        speech = "La función del departamento de" + sDepto + " es " +  aFuncion[aDeptos.indexOf(sDepto)];
+      }      
+    //GENERALIDADES --------------------------------------------------
+    } else if (req.body.queryResult.action == "general") {
+      if(req.body.queryResult.parameters.concepto){
+        speech = "El Instituto Tecnológico de Lázaro Cárdenas es la máxima casa de estudios de la ciudad. Contamos con 6 ingenierías y 2 licenciaturas. Para más informes puedes llamar al 753 537 1977 o puedes seguir hablando conmigo.";
+      } else if (req.body.queryResult.parameters.mision) {        
+        speech = "Formar profesionales con un alto sentido nacionalista de compromiso social, de servicio a su comunidad, identificados con el desarrollo de su región y del país, a través de una educación pública de calidad, pertinente que les proporcione los conocimientos, actitudes, habilidades y destrezas que cubran los parámetros de competencia internacional, a fin de satisfacer la demanda que el desarrollo de la región y del país requieren.";        
+      } else if (req.body.queryResult.parameters.vision) {
+        speech = "Ser una institución pública de educación superior y de postgrado con carácter nacionalista, con respecto a nuestros principios y valores. Con un modelo educativo, centrado en el aprendizaje, congruente y dinámico de acuerdo a las necesidades del entorno, que impulse el desarrollo económico, tecnológico y la investigación científica.";        
       }
-      
-      
     //ERROR --------------------------------------------------
-    } else {
+    }else {
       speech = "Ocurrió un problema. Hable de nuevo, por favor.";
     }
     //*******************************************************************************************************/
