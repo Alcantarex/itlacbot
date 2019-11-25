@@ -39,7 +39,7 @@ app.post("/echo", function(req, res) {
       var aSaludoTres = [
         "¿En qué te puedo ayudar?", "¿Qué tal? ¿En qué puedo ayudarte?", "¿En qué puedo ayudarte?",
         "¿En qué puedo ayudarte?", "¿Para qué soy bueno?", "¿Qué se le ofrece?"];      
-      speech = sSaludo + ", " + aSaludoTres[ Math.round(Math.random()*aSaludoTres.length) ];
+      speech = sSaludo + ", " + aSaludoTres[ Math.round(Math.random()*(aSaludoTres.length-1))];
     //CARRERA -------------------------------------------------- 
     } else if (req.body.queryResult.action == "carrera") {
       var aCarreras = [
@@ -64,7 +64,7 @@ app.post("/echo", function(req, res) {
         sCarreras = sCarreras + "\n" + aCarreras[i];
       }
       
-      speech = aFrases[ Math.round(Math.random()*aFrases.length) ] + "\n" + sCarreras;
+      speech = aFrases[ Math.round(Math.random()*(aFrases.length-1)) ] + "\n" + sCarreras;
     //COSTO --------------------------------------------------
     } else if (req.body.queryResult.action == "costo") {
       var cCosto = 2900;
@@ -74,7 +74,7 @@ app.post("/echo", function(req, res) {
         "La inscripción tiene un costo de $" + cCosto + ", sin embargo, cada semestre se actualiza el precio.",
         "Actualmente, en el " + dFecha.getFullYear() + " la inscripción tiene un costo de $" + cCosto,
         "Mira, el semeste de inscripción tiene un costo de $" + cCosto + ", a partir de ahí, cada semestre siguiente se va reduciendo cada $100"];
-      speech = aCosto[ Math.round(Math.random()*aCosto.length) ];
+      speech = aCosto[ Math.round(Math.random()*(aCosto.length-1)) ];
     //DEPARTAMENTO --------------------------------------------------
     } else if (req.body.queryResult.action == "departamento") {
       var aDeptos = [
