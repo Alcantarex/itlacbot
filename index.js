@@ -52,6 +52,16 @@ app.post("/echo", function(req, res) {
         "Contabilidad",
         "Administración"
       ];
+      var aBachilleratos = [
+        "Físico-Matemático",
+        "Químico-Biólogo",
+        "Físico-Matemático",
+        "Físico-Matemático",
+        "Físico-Matemático, Químico-Biólogo o Económico-Administrativo",
+        "Económico-Administrativo",
+        "Económico-Administrativo",
+        "Económico-Administrativo"
+      ];
       var aFrases = [
         "En el Instituto Tecnológico de Lázaro Cárdenas, hay 6 Ingenierías y 2 Licenciaturas, y son",
         "Las carreras que hay en el ITLAC son ",
@@ -67,6 +77,10 @@ app.post("/echo", function(req, res) {
         speech = "Hay 6 ingenierías, y son \n" + sCarreras;
       } else if(req.body.queryResult.parameters.licenciatura){
         speech = "Hay 2 licenciaturas, y son \nContabilidad y Administración";
+      } else if(req.body.queryResult.parameters.bachillerato){
+        var sCarrera = req.body.queryResult.parameters.carrera;
+        aCarreras.indexOf(sCarrera); 
+        speech = "El bachillerato de " + sCarrera + " es " +  aBachilleratos[aCarreras.indexOf(sCarrera)];
       } else if(req.body.queryResult.parameters.carreer){
         for(var i = 0; i < iTotalCarreras; i++){
           sCarreras = sCarreras + ".\n" + aCarreras[i];
@@ -122,7 +136,7 @@ app.post("/echo", function(req, res) {
       } else if (req.body.queryResult.parameters.funcion) {
         var sDepto = req.body.queryResult.parameters.depto;
         aDeptos.indexOf(sDepto); 
-        speech = "La función del departamento de" + sDepto + " es " +  aFuncion[aDeptos.indexOf(sDepto)];
+        speech = "La función del departamento de " + sDepto + " es " +  aFuncion[aDeptos.indexOf(sDepto)];
       }      
     //GENERALIDADES --------------------------------------------------
     } else if (req.body.queryResult.action == "general") {
