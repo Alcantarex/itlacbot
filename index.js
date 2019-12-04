@@ -2,9 +2,8 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
-
 const app = express();
-
+var http = require('http'), fs = require('fs');
 app.use(
   bodyParser.urlencoded({
     extended: true
@@ -180,12 +179,14 @@ app.post("/echo", function(req, res) {
 
 //Funcion GET en Raiz para mostrar la página principal del servidor.
 app.get('/', (req, res) => {
-  var html = 
-  "<html>"+
-    "<h1>🌏 ITLACbot's Server is working</h1>"+    
-    "<h5>ITLACbot by Alcantara & Cuevas. Copyright © 2019, ITLACbot. Todos los derechos reservados.</h5>"+
-  "</html>";  
-	res.status(200).send(html);
+  fs.readFile('./index.html', null, function (err, html) {
+    if (err) {
+      throw err; 
+    } else {
+      res.status(200).send(html);
+    }
+    res.end();      
+  });	
 });
 
 app.get('/chat', (req, res) => {
