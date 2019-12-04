@@ -17,11 +17,8 @@ app.post("/echo", function(req, res) {
   var speech = "";
   var dFecha = new Date();
   var aPreguntas = [
-    "Ahm... ¿Necesitas algo más?",
-    "¿En qué más puedo ayudarte?",
-    "¿Necesitas ayuda con otra cosa?",
-    "¿Algo más, humano?",
-    "¿Otra cosita? Dime con confianza.",
+    "Ahm... ¿Necesitas algo más?", "¿En qué más puedo ayudarte?", "¿Necesitas ayuda con otra cosa?",
+    "¿Algo más, humano?", "¿Otra cosita? Dime con confianza.",
   ];
   //*******************************************************************************************************/    
   if (req.body.queryResult.action == "saludo") {                    //SALUDO ------------- FUNCIONAL 100%
@@ -38,41 +35,27 @@ app.post("/echo", function(req, res) {
     }
     var aSaludoTres = [
       "¿En qué te puedo ayudar?", "¿Qué tal? ¿En qué puedo ayudarte?", "¿En qué puedo ayudarte?",
-      "¿En qué puedo ayudarte?", "¿Para qué soy bueno?", "¿Qué se le ofrece?"];      
+      "¿Te puedo ayudar en algo", "¿Para qué soy bueno?", "¿Qué se le ofrece?"];      
     speech = sSaludo + ", " + aSaludoTres[ Math.round(Math.random()*(aSaludoTres.length-1))];
   
   } else if (req.body.queryResult.action == "carrera") {            //CARRERA ------------ FUNCIONAL 100%
     var aCarreras = [
-      "ingeniería en sistemas computacionales",
-      "ingeniería química",
-      "ingeniería electrónica",
-      "ingeniería electromecánica",
-      "ingeniería industrial",
-      "ingeniería en gestión empresarial",
-      "contabilidad",
-      "administración."
+      "ingeniería en sistemas computacionales", "ingeniería química", "ingeniería electrónica", "ingeniería electromecánica",
+      "ingeniería industrial", "ingeniería en gestión empresarial", "contabilidad", "administración."
     ];
     var aBachilleratos = [
-      "Físico-Matemático",
-      "Químico-Biólogo",
-      "Físico-Matemático",
-      "Físico-Matemático",
-      "Físico-Matemático, Químico-Biólogo o Económico-Administrativo",
-      "Económico-Administrativo",
-      "Económico-Administrativo",
-      "Económico-Administrativo"
+      "Físico-Matemático", "Químico-Biólogo", "Físico-Matemático", "Físico-Matemático", "Físico-Matemático, Químico-Biólogo o Económico-Administrativo",
+      "Económico-Administrativo", "Económico-Administrativo", "Económico-Administrativo"
     ];
     var aFrases = [
       "En el Instituto Tecnológico de Lázaro Cárdenas, hay 6 Ingenierías y 2 Licenciaturas, y son",
-      "Las carreras que hay en el ITLAC son ",
-      "Mira, existen 6 Ingenierías y 2 Licenciaturas, y son "
+      "Las carreras que hay en el ITLAC son ", "Mira, existen 6 Ingenierías y 2 Licenciaturas, y son "
     ];
     var sCarreras = "";
-    var iTotalCarreras = aCarreras.length;
-    
+    var iTotalCarreras = aCarreras.length;    
     if(req.body.queryResult.parameters.inge){
       for(var i = 0; i < 6; i++)
-        sCarreras = sCarreras + ".\n" + aCarreras[i];      
+        sCarreras = sCarreras + aCarreras[i] + ".\n";
       speech = "Hay 6 ingenierías, y son \n" + sCarreras;
     } else if(req.body.queryResult.parameters.licenciatura){
       speech = "Hay 2 licenciaturas, y son \nContabilidad y Administración";
@@ -87,6 +70,7 @@ app.post("/echo", function(req, res) {
       speech = aFrases[ Math.round(Math.random()*(aFrases.length-1)) ] + "\n" + sCarreras;
     }
     speech += "\n" + aPreguntas[ Math.round(Math.random()*(aPreguntas.length-1)) ];
+    
   } else if (req.body.queryResult.action == "costo") {              //COSTO -------------- FUNCIONAL 100%
     var cCosto = 2900;
     var aCosto = [
@@ -99,17 +83,8 @@ app.post("/echo", function(req, res) {
     speech += "\n" + aPreguntas[ Math.round(Math.random()*(aPreguntas.length-1)) ];   
   } else if (req.body.queryResult.action == "departamento") {       //DEPARTAMENTO ------- FUNCIONAL 100%
     var aDeptos = [
-      "dirección",
-      "servicios escolares",
-      "recursos financieros",
-      "extraescolares",
-      "comunicación y difusión",
-      "gestión tecnológica y vinculación",
-      "titulación",
-      "ciencias básicas",
-      "recursos materiales",
-      "división de estudios",
-      "centro de cómputo"
+      "dirección", "servicios escolares", "recursos financieros", "extraescolares", "comunicación y difusión", "gestión tecnológica y vinculación", 
+      "titulación", "ciencias básicas", "recursos materiales", "división de estudios", "centro de cómputo"
     ];
     var aFuncion = [
       "dirigir y gestionar de manera general el plantel.",
@@ -208,6 +183,12 @@ app.get('/', (req, res) => {
   "<html>"+
     "<h1>🌏 ITLACbot's Server is working</h1>"+
     "<h3>ITLACbot by Alcantara & Cuevas. Copyright © 2019, ITLACbot. Todos los derechos reservados.</h3>"+
+    "<iframe"+
+      "allow='microphone;'"+
+      "width='350'"+
+      "height='430'"+
+      "src='https://console.dialogflow.com/api-client/demo/embedded/d2e84fbb-77ac-4bf6-a7e6-2471a953eee8'>"+
+    "</iframe>"+
   "</html>";
   
 	res.status(200).send(html);
