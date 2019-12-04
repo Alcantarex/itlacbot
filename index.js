@@ -185,8 +185,8 @@ app.get('/', (req, res) => {
     "<h3>ITLACbot by Alcantara & Cuevas. Copyright © 2019, ITLACbot. Todos los derechos reservados.</h3>"+
     "<iframe "+
       "allow='microphone;' "+
-      "width='350' "+
-      "height='430' "+
+      "width='600' "+
+      "height='500' "+
       "src='https://console.dialogflow.com/api-client/demo/embedded/d2e84fbb-77ac-4bf6-a7e6-2471a953eee8'> "+
     "</iframe>"+
   "</html>";
