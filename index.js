@@ -179,14 +179,16 @@ app.post("/echo", function(req, res) {
 
 //Funcion GET en Raiz para mostrar la página principal del servidor.
 app.get('/', (req, res) => {
+  var content = "";
   fs.readFile('./index.html', null, function (err, html) {
     if (err) {
-      throw err; 
+        throw err; 
     } else {
-      res.status(200).send(html);
+        content = html;
     }
     res.end();      
-  });	
+  });
+	res.status(200).send(content);
 });
 
 app.get('/chat', (req, res) => {
