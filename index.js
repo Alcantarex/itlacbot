@@ -180,7 +180,7 @@ app.post("/echo", function(req, res) {
 //Funcion GET en Raiz para mostrar la página principal del servidor.
 app.get('/', (req, res) => {
   var content = "";
-  fs.readFile('./index.html', null, function (err, html) {
+  fs.readFile('./index.html', function (err, html) {
     if (err) {
         throw err; 
     } else {
