@@ -183,12 +183,12 @@ app.get('/', (req, res) => {
   "<html>"+
     "<h1>🌏 ITLACbot's Server is working</h1>"+
     "<h3>ITLACbot by Alcantara & Cuevas. Copyright © 2019, ITLACbot. Todos los derechos reservados.</h3>"+
-    "<iframe "+
+    "<div align='center'> <iframe "+
       "allow='microphone;' "+
       "width='600' "+
       "height='500' "+
       "src='https://console.dialogflow.com/api-client/demo/embedded/d2e84fbb-77ac-4bf6-a7e6-2471a953eee8'> "+
-    "</iframe>"+
+    "</iframe> </div>"+
   "</html>";
   
 	res.status(200).send(html);
